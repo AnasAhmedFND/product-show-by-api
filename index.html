@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./output.css" rel="stylesheet">
+</head>
+<body>
+ <h1 class="text-2xl font-bold ">Hello world</h1>
+  <div id="main"></div>
+<img src="" alt="">
+<p></p>
+<h2></h2>
+<h3></h3>
+
+
+  <script>
+    fetch('https://dummyjson.com/products')
+    .then((response) => response.json())
+    .then(data => {
+      data.products.forEach((item) => {
+        let mix = document.getElementById('main');
+        let newDiv = document.createElement('div');
+        newDiv.innerHTML = `<img src=${item.thumbnail} alt="imgae"> <p>${item.title} </p> <h2>category : ${item.category} </h2> <h2>price : ${item.price} </h2> <h3>discountPercentage : ${item.discountPercentage} </h3> <h3>rating : ${item.rating} </h3> <h2>stock : ${item.stock} </h2> <h2>brand : ${item.brand} </h2> <h2>warrantyInformation : ${item.warrantyInformation} </h2>`
+        mix.appendChild(newDiv)
+        // console.log(data);
+        
+      })
+    })
+   
+  </script>
+</body>
+</html>

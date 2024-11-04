@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API in eCommerce</title>
+    <link href="./output.css" rel="stylesheet">
+
+</head>
+<body>
+    <h1 class="text-2xl font-bold text-center border-b-2 pb-2 ">Our Products</h1>
+    
+<div id="main" class="border-2 flex flex-wrap gap-5 "></div>
+
+<h1 class="text-center font-bold text-3xl mt-3 ">Browse The Range</h1>
+<div id="main2" class="mt-10 flex justify-between "></div>
+
+<h1 class="text-5xl font-bold text-center mt-10 pb-3">Blog</h1>
+<div id="main3" class="flex gap-10"></div>
+<div id="blog" class="flex flex-col gap-5"></div>
+
+<div id="recent" class="felx flex-col   h-[80%]"></div>
+
+
+<p></p>
+<h1></h1>
+    <script>
+        let main = document.getElementById("main")
+        let main2 = document.getElementById('main2')
+        let main3 = document.getElementById('main3')
+        fetch('data.json')
+        .then((response) => response.json())
+        .then(data => {
+            data.products.map((item) => {
+                let newDiv = document.createElement('div')
+                newDiv.innerHTML += ` <img src=${item.image} alt="images"> <h3>Id : ${item.id} </h3> <h2>${item.heading} </h2> <p>${item.peragrap} </p> <h3>Mrp : ${item.mrp} </h3> <h1>${item.imges} </h1>` 
+                main.appendChild(newDiv);                                             
+                
+            }) 
+            data.browse.map((item2) => {
+                let newItem = document.createElement('div')
+                newItem.innerHTML += `<img src=${item2.imges} alt="img">  <h1>${item2.heading} </h1>`
+                main2.appendChild(newItem);
+                newItem.style.textAlign = 'center';
+                newItem.style.marginTop = '10px'
+               
+
+            })  
+
+            data.blog.map((item) => {
+                let newMainBlog = document.getElementById('blog')
+                let newBlogDiv = document.createElement('div')                
+                newBlogDiv.innerHTML += ` <img src=${item.imges} alt="img">  <h1>${item.heading} </h1> <p>${item.peragrap} </p> <p>${item.button} </p>`
+                newMainBlog.appendChild(newBlogDiv);
+                main3.appendChild(newMainBlog)
+              
+                newBlogDiv.style.width = '800px'
+                newBlogDiv.style.color = ' green'
+                 
+                                       
+                                                            
+            })
+            data.recent.map((item) => {
+                let newMain = document.getElementById('recent')
+                let newDiv2 = document.createElement('div');
+                newDiv2.innerHTML = ` <img src=${item.image} alt="img"> <h1>${item.heading} </h1> <p>${item.peragrap} </p> `
+                newMain.appendChild(newDiv2);
+                main3.appendChild(newMain);                            
+                newDiv2.style.width = '300px'                             
+                newDiv2.style.padding = '10px'
+                newDiv2.style.marginTop = '15px'
+                
+                
+
+
+            })
+               
+        })
+
+
+    
+    </script>
+</body>
+</html>
